@@ -35,3 +35,18 @@ body {
     height: calc(100vh - 155px);
     width: 100%;
 }
+
+.legend {
+    line-height: 18px;
+    color:white;
+}
+.legend i {
+    border-radius: 50%;
+    background:#ebf436;
+    opacity: 0.7;
+    display:block;
+    margin: 0px auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align:center;
+}

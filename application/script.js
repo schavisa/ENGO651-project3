@@ -23,6 +23,23 @@ var map = L.map('map', {
 var layerControl = L.control.layers(baseMaps).addTo(map);
 osm.addTo(map);
 
+var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = ['Others', 'One Vehicle Incident', 'Two Vehicle Incident', 'Multiple Vehicle Incident'],
+        radius = [5, 10, 15, 20],
+        labels = [];
+
+    // incident information
+    for (var i = 0; i < grades.length; i++) {
+        labels.push('<td><i style="width:' + radius[i] + 'px; height:' + radius[i]+ 'px;"></i></td><td>' + grades[i] + '</td></tr>')
+    }
+    div.innerHTML += '<table><th>Symbols</th><th>Description</th><tr>'+ labels + '</table>';
+    return div;
+};
+
+
 // Create the date picker and query the building permit api
 $(function() {
     $('input[name="daterange"]').daterangepicker({
@@ -84,3 +101,12 @@ function addMarkerClusterGroup() {
 
 // Handle button click to clear markers
 document.getElementById("clear-content-button").addEventListener("click", removeMarkers);
+
+map.on('baselayerchange' , function(eventlayer){
+    if (eventlayer.name === "2017 Traffic Incidents"){
+        legend.addTo(map);
+    } else {
+        map.removeControl(legend);
+    }
+});
+
