@@ -24,18 +24,18 @@ var layerControl = L.control.layers(baseMaps).addTo(map);
 osm.addTo(map);
 
 var legend = L.control({position: 'bottomright'});
-legend.onAdd = function (map) {
+legend.onAdd = () => {
 
     var div = L.DomUtil.create('div', 'info legend');
     const grades = ['Others', 'One Vehicle Incident', 'Two Vehicle Incident', 'Multiple Vehicle Incident'];
     const radius = [5, 10, 15, 20];
     let labels = ['<strong>Legend</strong>'];
 
-    // incident information
+    // Incident information
     for (var i = 0; i < grades.length; i++) {
-        labels +='<tr><td><i style="width:' + radius[i] + 'px; height:' + radius[i]+ 'px;"></i></td><td>' + grades[i] + '</td></tr>';
+        labels +='<tr><td><i style="width:' + radius[i] + 'px; height:' + radius[i] + 'px;"></i></td><td>' + grades[i] + '</td></tr>';
     }
-    div.innerHTML = '<table>'+ labels + '</table>';
+    div.innerHTML = '<table>' + labels + '</table>';
     return div;
 };
 
