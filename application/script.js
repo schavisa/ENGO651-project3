@@ -23,6 +23,7 @@ var map = L.map('map', {
 var layerControl = L.control.layers(baseMaps).addTo(map);
 osm.addTo(map);
 
+// Define the legend
 var legend = L.control({position: 'bottomright'});
 legend.onAdd = () => {
 
@@ -38,8 +39,6 @@ legend.onAdd = () => {
     div.innerHTML = '<table>' + labels + '</table>';
     return div;
 };
-
-
 
 // Create the date picker and query the building permit api
 $(function() {
@@ -103,6 +102,7 @@ function addMarkerClusterGroup() {
 // Handle button click to clear markers
 document.getElementById("clear-content-button").addEventListener("click", removeMarkers);
 
+// Add and remove the legend when the basemap changes
 map.on('baselayerchange' , function(eventlayer){
     if (eventlayer.name === "2017 Traffic Incidents"){
         legend.addTo(map);
