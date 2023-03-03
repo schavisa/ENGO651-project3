@@ -19,7 +19,7 @@ var map = L.map('map', {
     zoom: 11
 });
 
-// Define the map centered on Calgary
+// Define the layer control and the default base map
 var layerControl = L.control.layers(baseMaps).addTo(map);
 osm.addTo(map);
 
